@@ -49,7 +49,7 @@ extension Point: UserDefaultsStorable {
     static var userDefaultsBridge: UserDefautsBridge<Point> {
         UserDefaultsBridge(
             serialization: { point in
-                return ["x": point.x, "y": point: y]
+                return ["x": point.x, "y": point.y]
             },
             deserialization: { object in
                 guard
@@ -81,7 +81,7 @@ enum Defaults {
     static var username: String
 }
 
-let observation = Defaults.$username.observe(withOption: [.old, .new]) { change in
+let observation = Defaults.$username.observe(withOptions: [.old, .new]) { change in
     print(change.newValue) // print Optional("guest")
     print(change.oldValue) // print Optional("mrfour")
 }
