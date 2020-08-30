@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// A type can be stored in `UserDefautls`.
+/// A type can be stored in `UserDefaults`.
 ///
 /// Types that conform to the `UserDefaultsStorable` protocol can be converted to data supported by `UserDefaults` with
 /// the provided `UserDefaultsBridge`.
@@ -26,10 +26,10 @@ import Foundation
 /// type can be converted to data can be stored in `UserDefaults`.
 /// ```
 /// extension Point: UserDefaultsStorable {
-///     static var userDefaultsBridge: UserDefautsBridge<Point> {
+///     static var userDefaultsBridge: UserDefaultsBridge<Point> {
 ///         UserDefaultsBridge(
 ///             serialization: { point in
-///                 return ["x": point.x, "y": point: y]
+///                 return ["x": point.x, "y": point: point.y]
 ///             },
 ///             deserialization: { object in
 ///                 guard

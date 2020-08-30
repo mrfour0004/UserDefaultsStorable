@@ -48,10 +48,9 @@ public final class UserDefaultObservation: NSObject {
         change: [NSKeyValueChangeKey : Any]?,
         context: UnsafeMutableRawPointer?
     ) {
-        guard
-            userDefaults == object as? NSObject,
-            let change = change
-        else { return invalidate() }
+        guard userDefaults == object as? NSObject, let change = change else {
+            return invalidate()
+        }
         changeHandler(change)
     }
 
