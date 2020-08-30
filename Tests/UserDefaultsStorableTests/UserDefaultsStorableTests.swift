@@ -132,7 +132,30 @@ final class UserDefaultsStorableTests: XCTestCase {
         Defaults.invalidation = "invalidation 3"
         token = nil
     }
-    
+
+    func testNewValueObservation() {
+        let observer: Observer? = Observer()
+
+        let expect = expectation(description: "change handler is called.")
+        observer?.tokens.append(OptionalDefaults.$newValueObservedString.observe { newValue in
+            if let newValue = newValue {
+                XCTAssertEqual(newValue, "observed")
+            } else {
+                XCTFail("new value shouldn't be `nil`")
+            }
+            expect.fulfill()
+        })
+        OptionalDefaults.newValueObservedString = "observed"
+        observer?.tokens.removeAll()
+
+        let expect2 = expectation(description: "value is set to nil successfully")
+        observer?.tokens.append(OptionalDefaults.$newValueObservedString.observe { newValue in
+            XCTAssertNil(newValue)
+            expect2.fulfill()
+        })
+        OptionalDefaults.newValueObservedString = nil
+        wait(for: [expect, expect2], timeout: 2)
+    }
 
     static var allTests = [
         ("testPrimitveTypes", testPrimitveTypes),
@@ -176,6 +199,9 @@ private enum OptionalDefaults {
 
     @OptionalUserDefault(key: "projected optional string")
     static var projectedString: String?
+
+    @OptionalUserDefault(key: "new value observed optional string")
+    static var newValueObservedString: String?
 }
 
 private enum StringEnum: String, UserDefaultsStorable {
