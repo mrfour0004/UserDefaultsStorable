@@ -24,4 +24,11 @@ public extension UserDefaultProtocol {
     ) -> UserDefaultObservation {
         UserDefaultObservation(userDefaults: storage, key: key, options: options, changeHandler: changeHandler)
     }
+
+    func observe(_ changeHandler: @escaping (WrappedValue) -> Void) -> UserDefaultObservation {
+        UserDefaultObservation(userDefaults: storage, key: key, options: .new) { (change: UserDefaultObservedChange<Value>) in
+            guard let newValue = change.newValue as? WrappedValue else { return }
+            changeHandler(newValue as WrappedValue)
+        }
+    }
 }
