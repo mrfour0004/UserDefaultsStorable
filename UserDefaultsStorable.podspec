@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'UserDefaultsStorable'
-  s.version          = '1.0.0'
+  s.version          = '1.1.0'
   s.summary          = 'Swifty, modern, and strong-typed UserDefaults package.'
 
 # This description is used to generate tags and improve search results.
@@ -18,8 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-  UserDefaultsStorable provides an easy, strongly-typed way to access properties in UserDefaults.TODO: Add long description of the pod here.
-                       DESC
+  UserDefaultsStorable provides an easy, strongly-typed way to access properties in UserDefaults.
 
   s.homepage         = 'https://github.com/mrfour0004/UserDefaultsStorable'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -30,5 +29,5 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '11.0'
 
   s.source_files = 'Sources/**/*'
-  s.swift_versions = ['5.1']
+  s.swift_versions = ['5.2']
 end
