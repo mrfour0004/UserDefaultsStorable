@@ -9,8 +9,8 @@ UserDefaultsStorable provides an easy, strongly-typed way to access properties i
 
 ## Requirement
 - iOS 11.0+
-- Xcode 11.0+
-- Swift 5.1+
+- Xcode 11.4+
+- Swift 5.2+
 
 ## Installation
 ### Cocoapods
@@ -20,7 +20,7 @@ pod "UserDefaultsStorable"
 
 ### Swift Package Manager
 ```swift
-.package(url: "https://github.com/mrfour0004/UserDefaultsStorable", from: "1.0.0")
+.package(url: "https://github.com/mrfour0004/UserDefaultsStorable", from: "1.1.0")
 ```
 
 ## Usage
@@ -84,6 +84,10 @@ enum Defaults {
 let observation = Defaults.$username.observe(withOptions: [.old, .new]) { change in
     print(change.newValue) // print Optional("guest")
     print(change.oldValue) // print Optional("mrfour")
+}
+
+let newValueObservation = Defaults.$username.observe { newValue in 
+    print(newValue) // print Optional("mrfour")
 }
 
 Defaults.username = "mrfour"
