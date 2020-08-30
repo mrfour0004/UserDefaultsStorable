@@ -10,8 +10,8 @@ import Foundation
 
 /// A manager that reads/saves data from/to the given `UserDefaults` for the given key.
 ///
-/// Use `OptionalUserDefault` to wrap a value without a default value. You must declare a property annoated by
-/// `@OptionalUserDefault` as optional becuase there is no default value provided.
+/// Use `OptionalUserDefault` to wrap a value without a default value. You must declare a property annotated by
+/// `@OptionalUserDefault` as optional because there is no default value provided.
 @propertyWrapper
 public struct OptionalUserDefault<Value: UserDefaultsStorable>: UserDefaultProtocol {
     public typealias Value = Value

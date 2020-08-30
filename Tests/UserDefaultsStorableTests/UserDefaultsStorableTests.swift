@@ -7,7 +7,7 @@ final class UserDefaultsStorableTests: XCTestCase {
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
     }
 
-    func testPrimitveTypes() {
+    func testPrimitiveTypes() {
         XCTAssertEqual(PrimitiveDefaults.string, "default string")
         PrimitiveDefaults.string = "test string"
         XCTAssertEqual(PrimitiveDefaults.string, "test string")
@@ -158,7 +158,7 @@ final class UserDefaultsStorableTests: XCTestCase {
     }
 
     static var allTests = [
-        ("testPrimitveTypes", testPrimitveTypes),
+        ("testPrimitveTypes", testPrimitiveTypes),
         ("testProjectedValue", testProjectedValue),
         ("testOptional", testOptional),
         ("testEnum", testEnum),

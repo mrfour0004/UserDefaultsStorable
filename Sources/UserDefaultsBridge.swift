@@ -15,7 +15,7 @@ public struct UserDefaultsBridge<Value> {
     /// A block deserializes value from the data stored in `UserDefaults`.
     let deserialize: (Any?) -> Value?
 
-    /// Returns a `UserDefaultsBridge` object with the given serialzation and deserialization.
+    /// Returns a `UserDefaultsBridge` object with the given serialization and deserialization.
     /// - Parameters:
     ///   - serialization: A block serializes a given value to data can be stored in `UserDefaults`.
     ///   - deserialization: A block deserializes data stored in `UserDefaults` to an equivalent `Value` object.
