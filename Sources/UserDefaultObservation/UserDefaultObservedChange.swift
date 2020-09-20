@@ -9,11 +9,11 @@
 import Foundation
 
 public struct UserDefaultObservedChange<Value> {
-    let kind: NSKeyValueChange
-    let indices: IndexSet?
-    let isPrior: Bool
-    let oldValue: Value?
-    let newValue: Value?
+    public let kind: NSKeyValueChange
+    public let indices: IndexSet?
+    public let isPrior: Bool
+    public let oldValue: Value?
+    public let newValue: Value?
 
     init(_ change: [NSKeyValueChangeKey: Any]) {
         kind = NSKeyValueChange(rawValue: change[.kindKey] as! UInt)!

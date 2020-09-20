@@ -36,7 +36,7 @@ public final class UserDefaultObservation: NSObject {
         invalidate()
     }
 
-    func invalidate() {
+    public func invalidate() {
         guard !isObserverRemoved else { return }
         isObserverRemoved = true
         userDefaults.removeObserver(self, forKeyPath: key)
