@@ -69,7 +69,7 @@ public extension UserDefaultsStorable where Self: Codable {
     }
 }
 
-extension UserDefaultsStorable where Self: RawRepresentable, RawValue: UserDefaultsStorable {
+public extension UserDefaultsStorable where Self: RawRepresentable, RawValue: UserDefaultsStorable {
     static var userDefaultsBridge: UserDefaultsBridge<Self> {
         UserDefaultsBridge(
             serialization: { $0?.rawValue },
@@ -81,7 +81,7 @@ extension UserDefaultsStorable where Self: RawRepresentable, RawValue: UserDefau
     }
 }
 
-extension UserDefaultsStorable where Self: Codable, Self: RawRepresentable, RawValue: UserDefaultsStorable {
+public extension UserDefaultsStorable where Self: Codable, Self: RawRepresentable, RawValue: UserDefaultsStorable {
     static var userDefaultsBridge: UserDefaultsBridge<Self> {
         UserDefaultsBridge(
             serialization: { $0?.rawValue },

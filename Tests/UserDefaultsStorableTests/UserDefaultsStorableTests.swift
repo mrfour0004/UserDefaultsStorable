@@ -1,5 +1,5 @@
 import XCTest
-@testable import UserDefaultsStorable
+import UserDefaultsStorable
 
 final class UserDefaultsStorableTests: XCTestCase {
 
