@@ -24,6 +24,8 @@ extension Data: BuiltInUserDefaultsStorable {}
 extension Date: BuiltInUserDefaultsStorable {}
 extension String: BuiltInUserDefaultsStorable {}
 extension URL: BuiltInUserDefaultsStorable {}
-extension Dictionary: UserDefaultsStorable where Key == String {}
+extension Dictionary: UserDefaultsStorable where Key == String {
+    public typealias BridgedType = Self
+}
 extension Dictionary: BuiltInUserDefaultsStorable where Key == String {}
 extension Array: BuiltInUserDefaultsStorable where Element: BuiltInUserDefaultsStorable {}

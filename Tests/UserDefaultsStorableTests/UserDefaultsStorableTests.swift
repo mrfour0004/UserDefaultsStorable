@@ -194,13 +194,13 @@ private enum PrimitiveDefaults {
 }
 
 private enum OptionalDefaults {
-    @OptionalUserDefault(key: "optional string")
+    @UserDefault(key: "optional string")
     static var string: String?
 
-    @OptionalUserDefault(key: "projected optional string")
+    @UserDefault(key: "projected optional string")
     static var projectedString: String?
 
-    @OptionalUserDefault(key: "new value observed optional string")
+    @UserDefault(key: "new value observed optional string")
     static var newValueObservedString: String?
 }
 
@@ -230,7 +230,7 @@ private enum Defaults {
     @UserDefault(key: "codableStringEnum")
     static var codableStringEnum: CodableStringEnum = .boo
 
-    @OptionalUserDefault(key: "person")
+    @UserDefault(key: "person")
     static var person: Person?
 
     @UserDefault(key: "intArray")
@@ -242,7 +242,7 @@ private enum Defaults {
     @UserDefault(key: "observedString")
     static var observedString: String = "observing"
 
-    @OptionalUserDefault(key: "invalidation")
+    @UserDefault(key: "invalidation")
     static var invalidation: String?
 
     @UserDefault(key: "dictionary")
