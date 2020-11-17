@@ -51,8 +51,9 @@ import Foundation
 /// ```
 ///
 public protocol UserDefaultsStorable {
+    associatedtype BridgedType
     /// An object that converts value to and from data stored in `UserDefaults`.
-    static var userDefaultsBridge: UserDefaultsBridge<Self> { get }
+    static var userDefaultsBridge: UserDefaultsBridge<BridgedType> { get }
 }
 
 public extension UserDefaultsStorable where Self: Codable {
@@ -94,8 +95,8 @@ public extension UserDefaultsStorable where Self: Codable, Self: RawRepresentabl
 }
 
 extension Array: UserDefaultsStorable where Element: UserDefaultsStorable {
-    public static var userDefaultsBridge: UserDefaultsBridge<[Element]> {
-        UserDefaultsBridge<[Element]>(
+    public static var userDefaultsBridge: UserDefaultsBridge<[Element.BridgedType]> {
+        UserDefaultsBridge<[Element.BridgedType]>(
             serialization: { value in
                 let bridge = Element.userDefaultsBridge
                 return value?.map(bridge.serialize)
@@ -103,7 +104,7 @@ extension Array: UserDefaultsStorable where Element: UserDefaultsStorable {
             deserialization: { object in
                 guard let object = object as? [Any] else { return nil }
                 let bridge = Element.userDefaultsBridge
-                return object.map(bridge.deserialize) as? [Element]
+                return object.map(bridge.deserialize) as? [Element.BridgedType]
             }
         )
     }

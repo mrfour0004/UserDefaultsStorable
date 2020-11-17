@@ -30,11 +30,11 @@ public struct UserDefault<Value: UserDefaultsStorable>: UserDefaultProtocol {
         get {
             let storedValue = storage.object(forKey: key)
             let bridge = Value.userDefaultsBridge
-            return bridge.deserialize(storedValue) ?? defaultValue
+            return bridge.deserialize(storedValue) as? Value ?? defaultValue
         }
         nonmutating set {
             let bridge = Value.userDefaultsBridge
-            let value = bridge.serialize(newValue)
+            let value = bridge.serialize(newValue as? Value.BridgedType)
             storage.set(value, forKey: key)
         }
     }
@@ -43,3 +43,16 @@ public struct UserDefault<Value: UserDefaultsStorable>: UserDefaultProtocol {
         self
     }
 }
+
+extension UserDefault where Value: ExpressibleByNilLiteral {
+    public init(key: String, storage: UserDefaults = .standard) {
+        self.init(wrappedValue: nil, key: key, storage: storage)
+    }
+}
+
+extension Optional: UserDefaultsStorable where Wrapped: UserDefaultsStorable {
+    public static var userDefaultsBridge: UserDefaultsBridge<Wrapped.BridgedType> {
+        Wrapped.userDefaultsBridge
+    }
+}
+
