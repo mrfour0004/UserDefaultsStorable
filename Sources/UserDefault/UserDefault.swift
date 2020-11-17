@@ -20,9 +20,9 @@ public struct UserDefault<Value: UserDefaultsStorable>: UserDefaultProtocol {
     public let storage: UserDefaults
     private let defaultValue: Value
 
-    public init(key: String, defaultValue: Value, storage: UserDefaults = .standard) {
+    public init(wrappedValue: Value, key: String, storage: UserDefaults = .standard) {
+        self.defaultValue = wrappedValue
         self.key = key
-        self.defaultValue = defaultValue
         self.storage = storage
     }
 
