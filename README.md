@@ -20,18 +20,22 @@ pod "UserDefaultsStorable"
 
 ### Swift Package Manager
 ```swift
-.package(url: "https://github.com/mrfour0004/UserDefaultsStorable", from: "1.1.0")
+.package(url: "https://github.com/mrfour0004/UserDefaultsStorable", from: "2.0.0")
 ```
 
 ## Usage
-To starting using `UserDefaultsStorable`, simply declare a `UserDefaults` property with a given key and a default value. If the property could be `nil`, use `OptionalUserDefaults` instead.
+To starting using `UserDefaultsStorable`, simply declare a `UserDefaults` property with a given key and a default value.
 ```swift
 enum Defaults {
-    @UserDefault(key: "username", defaultValue: "guest")
-    static var username: String
-            
-    // If the property doesn't have a default value, use `OptionalUserDefault`.
-    @OptionalUserDefaults(key: "token")
+    @UserDefault(key: "username")
+    static var username: String = "mrfour0004"
+    
+    // Of course type inference works as expected
+    @UserDefault(key: "displayName")
+    static var displayName = "mrfour"
+    
+    // If the stored type is Optional, initial value is not required as normal optional properties
+    @UserDefault(key: "token")
     static var token: String?   
 }
 
@@ -70,15 +74,15 @@ struct Point: Codable, UserDefaultsStorable {
 }
 
 enum Defaults {
-    @OptionalUserDefault(key: "point")
-    static var point: Point
+    @UserDefault(key: "point")
+    static var point: Point?
 }
 ```
 ### Observation
 ```swift
 enum Defaults {
-    @UserDefault(key: "username", defaultValue: "guest")
-    static var username: String
+    @UserDefault(key: "username")
+    static var username: String = "guest"
 }
 
 let observation = Defaults.$username.observe(withOptions: [.old, .new]) { change in
