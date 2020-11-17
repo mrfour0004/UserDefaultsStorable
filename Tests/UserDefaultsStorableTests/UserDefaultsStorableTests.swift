@@ -174,23 +174,23 @@ final class UserDefaultsStorableTests: XCTestCase {
 }
 
 private enum PrimitiveDefaults {
-    @UserDefault(key: "string", defaultValue: "default string")
-    static var string: String
+    @UserDefault(key: "string")
+    static var string: String = "default string"
 
-    @UserDefault(key: "int", defaultValue: 100)
-    static var int: Int
+    @UserDefault(key: "int")
+    static var int: Int = 100
 
-    @UserDefault(key: "double", defaultValue: 3.14)
-    static var double: Double
+    @UserDefault(key: "double")
+    static var double: Double = 3.14
 
-    @UserDefault(key: "bool", defaultValue: true)
-    static var bool: Bool
+    @UserDefault(key: "bool")
+    static var bool: Bool = true
 
-    @UserDefault(key: "data", defaultValue: "data".data(using: .utf8)!)
-    static var data: Data
+    @UserDefault(key: "data")
+    static var data: Data = "data".data(using: .utf8)!
 
-    @UserDefault(key: "projected string", defaultValue: "projected")
-    static var projectedString: String
+    @UserDefault(key: "projected string")
+    static var projectedString = "projected"
 }
 
 private enum OptionalDefaults {
@@ -224,30 +224,30 @@ private struct Person: Codable, UserDefaultsStorable, Equatable {
 }
 
 private enum Defaults {
-    @UserDefault(key: "stringEnum", defaultValue: .boo)
-    static var stringEnum: StringEnum
+    @UserDefault(key: "stringEnum")
+    static var stringEnum: StringEnum = .boo
 
-    @UserDefault(key: "codableStringEnum", defaultValue: .boo)
-    static var codableStringEnum: CodableStringEnum
+    @UserDefault(key: "codableStringEnum")
+    static var codableStringEnum: CodableStringEnum = .boo
 
     @OptionalUserDefault(key: "person")
     static var person: Person?
 
-    @UserDefault(key: "intArray", defaultValue: [])
-    static var intArray: [Int]
+    @UserDefault(key: "intArray")
+    static var intArray: [Int] = []
 
-    @UserDefault(key: "codableArray", defaultValue: [])
-    static var codableArray: [Person]
+    @UserDefault(key: "codableArray")
+    static var codableArray: [Person] = []
 
-    @UserDefault(key: "observedString", defaultValue: "observing")
-    static var observedString: String
+    @UserDefault(key: "observedString")
+    static var observedString: String = "observing"
 
     @OptionalUserDefault(key: "invalidation")
     static var invalidation: String?
 
-    @UserDefault(key: "dictionary", defaultValue: [:])
-    static var dictionary: [String: Any]
+    @UserDefault(key: "dictionary")
+    static var dictionary: [String: Any] = [:]
 
-    @UserDefault(key: "dictionaries", defaultValue: [])
-    static var dictionaries: [[String: Any]]
+    @UserDefault(key: "dictionaries")
+    static var dictionaries: [[String: Any]] = []
 }
